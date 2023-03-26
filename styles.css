@@ -3,19 +3,48 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: lightgray;
 
 }
+
 #container{
-    height: 80vh;
-    width: 80vh;
-    background-color: rgb(176, 127, 255);
+    height: 600px;
+    width: 600px;
+    background-color: black;
     padding: 5px;
     border-style: solid;
     display: flex;
-    gap: 1px;
     flex-wrap: wrap;
+    flex-shrink:0;
+    gap: 0px;
+    align-items:top;
 }
 
 .piece{
     background-color:white;
+    margin-top:0;
+    margin-bottom:0;
+    padding:0;
+    border-style:none;
+    border-width: 0px;
+}
+
+#menu{
+    width: 200px;
+    margin-right: 50px;
+    display:flex;
+    flex-direction: column;
+}
+
+h3{
+    text-align: center;
+}
+
+#slideContainer{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sliderDiv{
+    text-align:center;
 }

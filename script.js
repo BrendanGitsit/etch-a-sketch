@@ -1,13 +1,18 @@
 //Script to generate boxes within html container
-let num = 16;
+
+//initialize variables and values for slider and button
+let sliderVal = document.getElementById("myRange");
+let num = sliderVal.value
+let sliderDiv = document.getElementById("sliderDiv");
+sliderDiv.innerHTML = `${sliderVal.value} x ${sliderVal.value}`;
+let refresh = document.getElementById("refresh");
+
+//initialize Container and piece variables
 const myContainer = document.getElementById("container");
 let cWidth = myContainer.clientWidth - 10;//ten subtracted for padding
 let cHeight = myContainer.clientHeight - 10; //ten subtracted for pading
-let pWidth = (cWidth-num)/num;
-let pHeight = (cHeight-num)/num;
-console.log(pWidth);
-console.log(pHeight);
-
+let pWidth = (cWidth)/num;
+let pHeight = (cHeight)/num;
 
 //function for mousedown
 let mouseDown = false;
@@ -20,8 +25,21 @@ function changeColor(e){
     e.target.style.backgroundColor = 'black';
 };
 
+//function to clear grid
+function clearGrid(){
+    while (myContainer.firstChild){
+        myContainer.removeChild(myContainer.firstChild);
+    };
+};
+
 //Function to create a grid of pieces within the container
 function createGrid(){
+    const myContainer = document.getElementById("container");
+    let cWidth = myContainer.clientWidth - 10;//ten subtracted for padding
+    let cHeight = myContainer.clientHeight - 10; //ten subtracted for pading
+    num = sliderVal.value;
+    let pWidth = (cWidth)/num;
+    let pHeight = (cHeight)/num;
     for( let i = 0; i < Math.pow(num,2); i++){
         let piece = document.createElement('div');
         piece.style.width = `${pWidth}px`;
@@ -32,16 +50,20 @@ function createGrid(){
     };
 };
 
-/*
-function updateWidthHeight(){
-    const myContainer = document.getElementById("container");
-    let cWidth = myContainer.clientWidth - 10;//ten subtracted for padding
-    let cHeight = myContainer.clientHeight - 10; //ten subtracted for pading
-    let num = 16;
-    let pWidth = (cWidth-num)/num;
-    let pHeight = (cHeight-num)/num;
-}
-*/
+
+//function to refresh grid when size slider is moved
+sliderVal.oninput = function(){
+    sliderDiv.innerHTML = `${sliderVal.value} x ${sliderVal.value}`;
+    clearGrid();
+    createGrid();
+};
+
+//function to refresh grid on button click
+refresh.onclick = function(){
+    clearGrid();
+    createGrid();
+};
 
 
 createGrid();
+
